@@ -1,7 +1,7 @@
 /**
  * Exercice JDBC :
  * 
- * Ecrire un programme divisié en plusieurs fichiers et dossiers.
+ * Ecrire un programme divisiÃ© en plusieurs fichiers et dossiers.
  * 
  * Un dossier dao pour la partie de code accedant ? la BDD.
  * Un dossier modele pour les objets utilis?s sous forme de JavaBean.
@@ -13,7 +13,7 @@
  * 
  * Description : 
  * 
- * Creer la base de donn?es MySQL si elle n'existe pas. Nommée la comme vous le souhaiter.
+ * Creer la base de donn?es MySQL si elle n'existe pas. NommÃ©e la comme vous le souhaiter.
  * Connectez vous ? la BDD et cr?er les tables de la BDD si elles n'existent pas.
  * Ces tables sont : Utilisateurs, Clients, Fournisseurs et Articles.
  * 
@@ -53,6 +53,12 @@ import cours_exercices.exercices.JDBC.DAO.CreationJdbcNantes;
 import cours_exercices.exercices.JDBC.dao.DaoClients;
 import cours_exercices.exercices.JDBC.modele.Client;
 
+import cours_exercices.exercices.JDBC.DAO.DaoArticle;
+import cours_exercices.exercices.JDBC.DAO.DaoUtilisateurs;
+import cours_exercices.exercices.JDBC.modele.Article;
+import cours_exercices.exercices.JDBC.modele.Utilisateur;
+import java.util.List;
+
 /**
  * @author Twixy
  */
@@ -62,10 +68,11 @@ public class MenuPrincipale {
         jdbc.createDatabase();
         jdbc.createTables();
         
+
         DaoClients client = new DaoClients(jdbc.getConn());
         client.lectureClients();
         
-        Client khadidja = new Client(1, 1, "khadidja", "SIDELARBI", "kha_didja85@doe.com", "Orléans");
+        Client khadidja = new Client(1, 1, "khadidja", "SIDELARBI", "kha_didja85@doe.com", "OrlÃ©ans");
         
         client.lectureClients();
         client.lectureClient(khadidja);        
@@ -73,5 +80,34 @@ public class MenuPrincipale {
         client.updateClient(khadidja);
         client.deleteClient(khadidja);
         
+        DaoUtilisateurs u = new DaoUtilisateurs(jdbc.getConn());
+        
+        Utilisateur john = new Utilisateur(1, "John", "Doe", "john@doe.com", "john", "john");
+        Utilisateur jane = new Utilisateur(2, "Jane", "Doe", "janedoe@doe.com", "jad", "jane");
+        u.insertUtilisateur(jane);
+        
+        // lecture en base
+        jane = u.lectureUtilisateur(2);
+        jane.setEmail("coucoucoucou");
+        u.modificationUtilisateur(jane);
+        
+        
+        DaoArticle da = new DaoArticle(jdbc.getConn());
+        Article a = new Article (41, true, "machine a cafe", "super machine pour faire du cafe");
+        Article b = new Article (1, true, "machine laver", "super machine pour laver");
+        
+        da.insertionArticle(a);
+        da.insertionArticle(b);
+        
+        List<Article> listArticles = da.lectureArticles();
+        
+        for(Article art : listArticles){
+            art.setNom(art.getNom() + "modifie");
+            da.modificationArticle(art);            
+        }
+        
+        Article test = da.lectureArticle(12);
+        test.prettyPrint();
+//            da.suppressionArticle(art);
     }
 }
