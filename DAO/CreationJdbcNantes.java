@@ -22,10 +22,8 @@ public class CreationJdbcNantes {
     public CreationJdbcNantes(){      
         try {
             Class.forName ("com.mysql.cj.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "admin");           
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        } catch (SQLException ex) {
+            this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "Khadidja/85");           
+        } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());
         }        
     }
@@ -44,7 +42,7 @@ public class CreationJdbcNantes {
     public void createDatabase(){
             String str1 = "CREATE DATABASE IF NOT EXISTS JdbcNantes CHARACTER SET utf8;";
             String str2 = "use JdbcNantes";
-            System.out.println("Création de la base de données");
+            System.out.println("Cr?ation de la base de donn?es");
             this.execute(str1);
             this.execute(str2);
     }
@@ -62,8 +60,8 @@ public class CreationJdbcNantes {
         
         String str2 = "CREATE TABLE IF NOT EXISTS Clients ("
                     + "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
-                    + "numero_client int(1) NOT NULL, "
-                    + "constraint uc_client unique (numero_client), "
+                    + "numero int(1) NOT NULL, "
+                    + "constraint uc_clients unique (numero), "
                     + "nom Varchar (50) NOT NULL, "
                     + "prenom Varchar (50) NOT NULL, "
                     + "email Varchar (50) NOT NULL, "
@@ -99,7 +97,5 @@ public class CreationJdbcNantes {
         System.out.println("Creation de la table articles");
         this.execute(str4);
 
-    }
-    
-
+    }    
 }
