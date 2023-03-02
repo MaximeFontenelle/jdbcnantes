@@ -32,13 +32,10 @@ public class DaoArticle {
             Statement stmt = this.conn.createStatement();
             rs = stmt.executeQuery(str);
             
-            if (rs.next()){
-                Article art = new Article(rs.getInt("id"), rs.getInt("numero_article"), rs.getBoolean("etat"), 
+            if (rs.next())
+                return new Article(rs.getInt("id"), rs.getInt("numero_article"), rs.getBoolean("etat"), 
                         rs.getString("nom"), rs.getString("description"));
-               art.prettyPrint();
-               return art;
-                
-            }
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

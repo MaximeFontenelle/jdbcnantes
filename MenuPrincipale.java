@@ -83,6 +83,9 @@ public class MenuPrincipale {
             art.setNom(art.getNom() + "modifie");
             da.modificationArticle(art);            
         }
-        //            da.suppressionArticle(art);
+        
+        Article test = da.lectureArticle(12);
+        test.prettyPrint();
+//            da.suppressionArticle(art);
     }
 }
