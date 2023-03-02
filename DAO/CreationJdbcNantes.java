@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cours_exercices.exercices.JDBC.DAO;
+package javafondamentaux.cours_exercices.exercices.JDBC.DAO;
 
 
 import java.sql.*;
@@ -19,20 +19,13 @@ public class CreationJdbcNantes {
         return this.conn;
     }
     
-    public CreationJdbcNantes(){      
+    public CreationJdbcNantes() {      
         try {
             Class.forName ("com.mysql.cj.jdbc.Driver");
-<<<<<<< HEAD
             this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "root");           
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        } catch (SQLException ex) {
-=======
-            this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "Khadidja/85");           
         } catch (ClassNotFoundException | SQLException ex) {
->>>>>>> e76ffae1ccad88b3c95c2d48c30fdec6f507b96e
             System.out.println(ex.getMessage());
-        }        
+        }
     }
     
     public void execute(String s){
@@ -57,7 +50,7 @@ public class CreationJdbcNantes {
     public void createTables(){
         String str1 = "CREATE TABLE IF NOT EXISTS Utilisateurs ("
                 + "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
-                + "numero_employe int(1) NOT NULL, "
+                + "numero_employe int NOT NULL, "
                 + "constraint uc_employe unique (numero_employe), "
                 + "nom Varchar (50) NOT NULL, "
                 + "prenom Varchar (50) NOT NULL, "
@@ -67,7 +60,7 @@ public class CreationJdbcNantes {
         
         String str2 = "CREATE TABLE IF NOT EXISTS Clients ("
                     + "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
-                    + "numero int(1) NOT NULL, "
+                    + "numero int NOT NULL, "
                     + "constraint uc_clients unique (numero), "
                     + "nom Varchar (50) NOT NULL, "
                     + "prenom Varchar (50) NOT NULL, "
@@ -78,7 +71,7 @@ public class CreationJdbcNantes {
         //Ils ont un id, un num?ro unique, un nom, un email et une adresse.
         String str3 = "CREATE TABLE IF NOT EXISTS Fournisseurs ("
                     + "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
-                    + "numero_fournisseur int(1) NOT NULL, "
+                    + "numero_fournisseur int NOT NULL, "
                     + "constraint uc_fournisseur unique (numero_fournisseur), "
                     + "nom Varchar (50) NOT NULL, "
                     + "email Varchar (50) NOT NULL, "
@@ -88,7 +81,7 @@ public class CreationJdbcNantes {
         //Ils ont un id, un numero unique, un champs indiquant si c'est un article acheter ou vendu, un nom, une description.
         String str4 = "CREATE TABLE IF NOT EXISTS Articles ("
                     + "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
-                    + "numero_article int(1) NOT NULL, "
+                    + "numero_article int(10) NOT NULL, "
                     + "constraint uc_article unique (numero_article), "
                     + "nom Varchar (50) NOT NULL, "
                     + "etat Boolean default NULL,"

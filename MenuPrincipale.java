@@ -49,83 +49,34 @@
 
 package javafondamentaux.cours_exercices.exercices.JDBC;
 
-import cours_exercices.exercices.JDBC.DAO.CreationJdbcNantes;
-import cours_exercices.exercices.JDBC.dao.DaoClients;
-import cours_exercices.exercices.JDBC.modele.Client;
-import cours_exercices.exercices.JDBC.DAO.DaoArticle;
-import cours_exercices.exercices.JDBC.DAO.DaoUtilisateurs;
-import cours_exercices.exercices.JDBC.modele.Article;
-import cours_exercices.exercices.JDBC.modele.Utilisateur;
-import javafondamentaux.cours_exercices.exercices.JDBC.DAO.DaoFournisseurs;
-import javafondamentaux.cours_exercices.exercices.JDBC.modele.Fournisseur;
-import java.util.List;
+import java.util.Scanner;
+import javafondamentaux.cours_exercices.exercices.JDBC.DAO.CreationJdbcNantes;
+import javafondamentaux.cours_exercices.exercices.JDBC.vue.Vue;
+import javafondamentaux.cours_exercices.exercices.JDBC.vue.VueUtilisateur;
 
 
 /**
  * @author Twixy
  */
 public class MenuPrincipale {
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         CreationJdbcNantes jdbc = new CreationJdbcNantes();
         jdbc.createDatabase();
         jdbc.createTables();
 
-        DaoUtilisateurs u = new DaoUtilisateurs(jdbc.getConn());
-        u.lectureUtilisateurs();
-        Utilisateur jane = new Utilisateur(2, "Jane", "Doe", "janedoe@doe.com", "jad", "jane");
-        u.insertUtilisateur(jane);
-         u.lectureUtilisateurs();
-        DaoFournisseurs f = new DaoFournisseurs(jdbc.getConn());
-        Fournisseur sogeti = new Fournisseur(1,
-                "sogeti",
-                "contact@sogeti",
-                "16 rue pablo picasso 44100 nantes");
-
-        f.insererFournisseur(sogeti);
-        f.lectureFournisseur(sogeti);
-        f.lectureFournisseurs();
-        sogeti.setNom("capgemini");
-        f.modifierFournisseur(sogeti);
-        f.supprimmerFournisseur(sogeti);
-
-        DaoClients client = new DaoClients(jdbc.getConn());
-        client.lectureClients();
+        Vue v = new Vue();
+        Scanner scan = new Scanner(System.in);
+        String inputUser = "";
         
-        Client khadidja = new Client(1, 1, "khadidja", "SIDELARBI", "kha_didja85@doe.com", "Orléans");
-        
-        client.lectureClients();
-        client.lectureClient(khadidja);        
-        client.insertClient(khadidja);
-        client.updateClient(khadidja);
-        client.deleteClient(khadidja);
-        
-        DaoUtilisateurs u = new DaoUtilisateurs(jdbc.getConn());
-        
-        Utilisateur john = new Utilisateur(1, "John", "Doe", "john@doe.com", "john", "john");
-        Utilisateur jane = new Utilisateur(2, "Jane", "Doe", "janedoe@doe.com", "jad", "jane");
-        u.insertUtilisateur(jane);
-        
-        // lecture en base
-        jane = u.lectureUtilisateur(2);
-        jane.setEmail("coucoucoucou");
-        u.modificationUtilisateur(jane);
-       
-        DaoArticle da = new DaoArticle(jdbc.getConn());
-        Article a = new Article (41, true, "machine a cafe", "super machine pour faire du cafe");
-        Article b = new Article (1, true, "machine laver", "super machine pour laver");
-        
-        da.insertionArticle(a);
-        da.insertionArticle(b);
-        
-        List<Article> listArticles = da.lectureArticles();
-        
-        for(Article art : listArticles){
-            art.setNom(art.getNom() + "modifie");
-            da.modificationArticle(art);            
+        while (!inputUser.equals("exit")) {
+            inputUser = scan.nextLine();
+            switch (inputUser) {
+                case "1": 
+                VueUtilisateur terminalUtilisateur = new VueUtilisateur();
+                terminalUtilisateur.lireUtilisateur();
+                default : 
+                    System.out.println("erreur");
+            }
         }
-        
-        Article test = da.lectureArticle(12);
-        test.prettyPrint();
-//            da.suppressionArticle(art);
     }
 }

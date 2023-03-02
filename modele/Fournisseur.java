@@ -81,8 +81,4 @@ public class Fournisseur {
         + this.email + " " 
         + this.adresse);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> lucas/fournisseurs

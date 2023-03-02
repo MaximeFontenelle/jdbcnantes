@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cours_exercices.exercices.JDBC.modele;
+package javafondamentaux.cours_exercices.exercices.JDBC.modele;
 
 /**
  *
@@ -42,59 +42,45 @@ public class Utilisateur {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public int getNum_employe() {
         return num_employe;
     }
-
     public void setNum_employe(int num_employe) {
         this.num_employe = num_employe;
     }
-
     public String getNom() {
         return nom;
     }
-
     public void setNom(String nom) {
         this.nom = nom;
     }
-
     public String getPrenom() {
         return prenom;
     }
-
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-
     public String getEmail() {
         return this.email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
     public String getLogin() {
         return login;
     }
-
     public void setLogin(String login) {
         this.login = login;
     }
-
     public String getMdp() {
         return mdp;
     }
-
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
-    
     public void prettyPrint(){
         System.out.println("Utilisateur : " + this.id + " " + this.num_employe + " " + this.nom + " " + this.prenom + " " 
                 + this.email + " " + this.login +" " + this.mdp);

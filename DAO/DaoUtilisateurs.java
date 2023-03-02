@@ -1,6 +1,6 @@
-package cours_exercices.exercices.JDBC.DAO;
+package javafondamentaux.cours_exercices.exercices.JDBC.DAO;
 
-import cours_exercices.exercices.JDBC.modele.Utilisateur;
+import javafondamentaux.cours_exercices.exercices.JDBC.modele.Utilisateur;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,8 @@ public class DaoUtilisateurs {
         this.conn = c;
     }
     
-    public Utilisateur lectureUtilisateur(int u){
-            String str = "SELECT * FROM Utilisateurs WHERE id='" + u+ "'";
+    public Utilisateur lectureUtilisateur(int userId){
+            String str = "SELECT * FROM Utilisateurs WHERE id='" + userId + "'";
             ResultSet rs;
 
             try {
@@ -85,7 +85,6 @@ public class DaoUtilisateurs {
                 + ", login = '" + a.getLogin()+ "'"
                 + ", mot_de_passe = '" + a.getMdp() + "'"
                 + " WHERE id = " +a.getId();
-        System.out.println(s);
         Statement stmt;
         try {
             stmt = this.conn.createStatement();
@@ -96,8 +95,8 @@ public class DaoUtilisateurs {
         }    
     }
     
-    public void suppressionUtilisateur(Utilisateur a) {
-        String s = "DELETE FROM Utilisateurs WHERE id = " +a.getId();
+    public void suppressionUtilisateur(int userId) {
+        String s = "DELETE FROM Utilisateurs WHERE id = " + userId;
         Statement stmt;
         try {
             stmt = this.conn.createStatement();

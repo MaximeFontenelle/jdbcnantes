@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cours_exercices.exercices.JDBC.DAO;
+package javafondamentaux.cours_exercices.exercices.JDBC.DAO;
 
-import cours_exercices.exercices.JDBC.modele.Article;
+import javafondamentaux.cours_exercices.exercices.JDBC.modele.Article;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -70,7 +70,6 @@ public class DaoArticle {
                 +"'" + (u.getEtat() ? 1 : 0) + "', "
                 +"'" + u.getNom() + "', "
                 +"'" + u.getDescription() + "')"; 
-        
         Statement stmt;
         try {
             stmt = this.conn.createStatement();

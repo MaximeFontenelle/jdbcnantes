@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cours_exercices.exercices.JDBC.modele;
+package javafondamentaux.cours_exercices.exercices.JDBC.modele;
 
 /**
  *
@@ -24,7 +24,14 @@ public class Client {
         this.email = email;
         this.adresse = adresse;
     }
-
+    public Client(int numero, String nom, String prenom, String email, String adresse) {
+        this.numero = numero;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.adresse = adresse;
+    }
+    
     public int getId() {
         return id;
     }
