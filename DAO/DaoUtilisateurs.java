@@ -4,12 +4,11 @@
  */
 package cours_exercices.exercices.JDBC.DAO;
 
+import cours_exercices.exercices.JDBC.modele.Article;
 import cours_exercices.exercices.JDBC.modele.Utilisateur;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -21,17 +20,6 @@ public class DaoUtilisateurs {
     
     public DaoUtilisateurs(Connection c){
         this.conn = c;
-    }
-    
-    public void execute(String s){
-        Statement stmt;
-        
-        try {
-            stmt = this.conn.createStatement();
-            stmt.executeUpdate(s);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
     
     public List<Utilisateur> lectureUtilisateurs(){
