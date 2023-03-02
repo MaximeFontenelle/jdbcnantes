@@ -67,8 +67,15 @@ public class MenuPrincipale {
         
         DaoUtilisateurs u = new DaoUtilisateurs(jdbc.getConn());
         
+        Utilisateur john = new Utilisateur(1, "John", "Doe", "john@doe.com", "john", "john");
         Utilisateur jane = new Utilisateur(2, "Jane", "Doe", "janedoe@doe.com", "jad", "jane");
         u.insertUtilisateur(jane);
+        
+        // lecture en base
+        jane = u.lectureUtilisateur(2);
+        jane.setEmail("coucoucoucou");
+        u.modificationUtilisateur(jane);
+        
         
         DaoArticle da = new DaoArticle(jdbc.getConn());
         Article a = new Article (41, true, "machine a cafe", "super machine pour faire du cafe");

@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cours_exercices.exercices.JDBC.DAO;
 
-import cours_exercices.exercices.JDBC.modele.Article;
 import cours_exercices.exercices.JDBC.modele.Utilisateur;
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,6 +17,25 @@ public class DaoUtilisateurs {
         this.conn = c;
     }
     
+    public Utilisateur lectureUtilisateur(int u){
+            String str = "SELECT * FROM Utilisateurs WHERE id='" + u+ "'";
+            ResultSet rs;
+
+            try {
+                Statement stmt = this.conn.createStatement();
+                rs = stmt.executeQuery(str);
+
+                if (rs.next())
+                    return new Utilisateur(rs.getInt("id"), rs.getInt("numero_employe"), rs.getString("nom"), 
+                        rs.getString("prenom"),  rs.getString("email"),  rs.getString("login"),  
+                        rs.getString("mot_de_passe"));
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            return null;
+        }
+      
     public List<Utilisateur> lectureUtilisateurs(){
         String str = "SELECT * FROM Utilisateurs";
         ResultSet rs;
@@ -58,10 +72,41 @@ public class DaoUtilisateurs {
         try {
             stmt = this.conn.createStatement();
             stmt.executeUpdate(s);
-            //System.out.println("Insertion de l'utilisateur : ");
-            //u.prettyPrint();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
+        
+    public void modificationUtilisateur(Utilisateur a) {
+        String s = "UPDATE Utilisateurs SET "
+                + "numero_employe = " + a.getNum_employe()
+                + ", nom = '" + a.getNom() + "'"
+                + ", prenom = '" + a.getPrenom() + "'"
+                + ", email = '" + a.getEmail()+ "'"
+                + ", login = '" + a.getLogin()+ "'"
+                + ", mot_de_passe = '" + a.getMdp() + "'"
+                + " WHERE id = " +a.getId();
+        System.out.println(s);
+        Statement stmt;
+        try {
+            stmt = this.conn.createStatement();
+            stmt.executeUpdate(s);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }    
+    }
+    
+    public void suppressionUtilisateur(Utilisateur a) {
+        String s = "DELETE FROM Utilisateurs WHERE id = " +a.getId();
+        Statement stmt;
+        try {
+            stmt = this.conn.createStatement();
+            stmt.executeUpdate(s);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }    
+    }
+    
 }
