@@ -47,17 +47,19 @@
  * Faire les javadoc pour toutes les m?thodes et classes.
  */
 
-package cours_exercices.exercices.JDBC;
+package javafondamentaux.cours_exercices.exercices.JDBC;
 
 import cours_exercices.exercices.JDBC.DAO.CreationJdbcNantes;
 import cours_exercices.exercices.JDBC.dao.DaoClients;
 import cours_exercices.exercices.JDBC.modele.Client;
-
 import cours_exercices.exercices.JDBC.DAO.DaoArticle;
 import cours_exercices.exercices.JDBC.DAO.DaoUtilisateurs;
 import cours_exercices.exercices.JDBC.modele.Article;
 import cours_exercices.exercices.JDBC.modele.Utilisateur;
+import javafondamentaux.cours_exercices.exercices.JDBC.DAO.DaoFournisseurs;
+import javafondamentaux.cours_exercices.exercices.JDBC.modele.Fournisseur;
 import java.util.List;
+
 
 /**
  * @author Twixy
@@ -67,7 +69,24 @@ public class MenuPrincipale {
         CreationJdbcNantes jdbc = new CreationJdbcNantes();
         jdbc.createDatabase();
         jdbc.createTables();
-        
+
+        DaoUtilisateurs u = new DaoUtilisateurs(jdbc.getConn());
+        u.lectureUtilisateurs();
+        Utilisateur jane = new Utilisateur(2, "Jane", "Doe", "janedoe@doe.com", "jad", "jane");
+        u.insertUtilisateur(jane);
+         u.lectureUtilisateurs();
+        DaoFournisseurs f = new DaoFournisseurs(jdbc.getConn());
+        Fournisseur sogeti = new Fournisseur(1,
+                "sogeti",
+                "contact@sogeti",
+                "16 rue pablo picasso 44100 nantes");
+
+        f.insererFournisseur(sogeti);
+        f.lectureFournisseur(sogeti);
+        f.lectureFournisseurs();
+        sogeti.setNom("capgemini");
+        f.modifierFournisseur(sogeti);
+        f.supprimmerFournisseur(sogeti);
 
         DaoClients client = new DaoClients(jdbc.getConn());
         client.lectureClients();
@@ -90,8 +109,7 @@ public class MenuPrincipale {
         jane = u.lectureUtilisateur(2);
         jane.setEmail("coucoucoucou");
         u.modificationUtilisateur(jane);
-        
-        
+       
         DaoArticle da = new DaoArticle(jdbc.getConn());
         Article a = new Article (41, true, "machine a cafe", "super machine pour faire du cafe");
         Article b = new Article (1, true, "machine laver", "super machine pour laver");
