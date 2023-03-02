@@ -47,11 +47,13 @@
  * Faire les javadoc pour toutes les méthodes et classes.
  */
 
-package cours_exercices.exercices.JDBC;
+package javafondamentaux.cours_exercices.exercices.JDBC;
 
 import cours_exercices.exercices.JDBC.DAO.CreationJdbcNantes;
 import cours_exercices.exercices.JDBC.DAO.DaoUtilisateurs;
 import cours_exercices.exercices.JDBC.modele.Utilisateur;
+import javafondamentaux.cours_exercices.exercices.JDBC.DAO.DaoFournisseurs;
+import javafondamentaux.cours_exercices.exercices.JDBC.modele.Fournisseur;
 
 /**
  * @author Twixy
@@ -61,13 +63,27 @@ public class MenuPrincipale {
         CreationJdbcNantes jdbc = new CreationJdbcNantes();
         jdbc.createDatabase();
         jdbc.createTables();
-        
+
         DaoUtilisateurs u = new DaoUtilisateurs(jdbc.getConn());
         u.lectureUtilisateurs();
-        
         Utilisateur jane = new Utilisateur(2, "Jane", "Doe", "janedoe@doe.com", "jad", "jane");
         u.insertUtilisateur(jane);
-        
          u.lectureUtilisateurs();
+        DaoFournisseurs f = new DaoFournisseurs(jdbc.getConn());
+        Fournisseur sogeti = new Fournisseur(1,
+                "sogeti",
+                "contact@sogeti",
+                "16 rue pablo picasso 44100 nantes");
+
+        f.insererFournisseur(sogeti);
+        f.lectureFournisseur(sogeti);
+        f.lectureFournisseurs();
+        sogeti.setNom("capgemini");
+        f.modifierFournisseur(sogeti);
+        f.supprimmerFournisseur(sogeti);
+
+        
+        
+        
     }
 }
