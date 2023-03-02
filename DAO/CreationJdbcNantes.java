@@ -22,7 +22,7 @@ public class CreationJdbcNantes {
     public CreationJdbcNantes(){      
         try {
             Class.forName ("com.mysql.cj.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "admin");           
+            this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "root");           
         } catch (ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
         } catch (SQLException ex) {

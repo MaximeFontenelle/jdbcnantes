@@ -65,7 +65,6 @@ public class DaoUtilisateurs {
                 +"'" + u.getEmail() + "', "
                 +"'" + u.getLogin() + "', "
                 +"'" + u.getMdp()+ "')"; 
-        
         Statement stmt;
         try {
             stmt = this.conn.createStatement();
